@@ -1,0 +1,37 @@
+.room-header{
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+    background-color: rgb(24, 144, 255);
+}
+.room-header h2{
+    color: white;
+}
+.room-header button{
+    padding: 1vh 1vw;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px ;
+    cursor: pointer;
+    transition: 0.25s all ease-in-out;
+}
+.room-header button:hover{
+    background-color: white;
+    color: rgb(24, 144, 255);
+}
+@media (max-width:1023px) and (min-width:768px){
+    .room-header{
+        padding: 0 2vw;
+    }
+}
+@media (max-width:767px){
+    .room-header{
+        padding: 0 6vw;
+    }
+    .room-header button{
+        padding: 1vh 2vw;
+    }
+}
