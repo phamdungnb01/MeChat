@@ -1,18 +1,20 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {getAuth} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore'
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: "AIzaSyDPl7CYa0Amucg2_NyDaCbZ8FJVfmLldrk",
-  authDomain: "chatapp-e81dd.firebaseapp.com",
-  projectId: "chatapp-e81dd",
-  storageBucket: "chatapp-e81dd.appspot.com",
-  messagingSenderId: "100832733532",
-  appId: "1:100832733532:web:9377a2ff245d6cfb1c7999",
-  measurementId: "G-FZHB7G9YSG"
+  apiKey: "AIzaSyDn17oJ8PAUssb1tQBPD4QTqTD17pX9F5U",
+  authDomain: "mechat-4d9a2.firebaseapp.com",
+  projectId: "mechat-4d9a2",
+  storageBucket: "mechat-4d9a2.appspot.com",
+  messagingSenderId: "217385081732",
+  appId: "1:217385081732:web:c43a5f697ee3c0f45c5bd1",
+  measurementId: "G-4FEFLTDLPY"
 };
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+export const storage = getStorage(app)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 export default app;

@@ -1,41 +1,57 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    getAdditionalUserInfo
 } from 'firebase/auth'
-import { auth } from "./Config";
-
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "./Config";
+import { collection,doc,setDoc,updateDoc } from "firebase/firestore";
 const userAuthContext = createContext()
 
-export function UserAuthContextProvider({children}){
+export default function UserAuthContextProvider({children}){
     const [user,setUser] = useState('')
-    function signUp(email,password,id){
-        return createUserWithEmailAndPassword(auth,email,password,id)
-    }
-    function logIn(email,password){
-        return signInWithEmailAndPassword(auth,email)
-    }
     function logOut(){
+        updateDoc(doc(db, 'users', auth.currentUser.uid),{
+            isOnline: false
+        })
         return signOut(auth)
     }
-    function googleSignIn(){
+    async function googleSignIn(){
         const googleAuthProvider = new GoogleAuthProvider();
-        return signInWithPopup(auth,googleAuthProvider)
+        try {
+            const result = await signInWithPopup(auth, googleAuthProvider);
+            
+            const details = getAdditionalUserInfo(result);
+            if (details.isNewUser) {
+                setDoc(doc(db, 'users', result.user.uid), {
+                    uid: result.user.uid,
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    isOnline: true,
+                    avt:result.user.photoURL
+                });
+            }else{
+                updateDoc(doc(db, 'users', auth.currentUser.uid),{
+                    isOnline: true
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
     useEffect(()=>{
-        const unsubcribe = onAuthStateChanged(auth,(currenUser)=>{
-            setUser(currenUser)
+        const unsubcribe = onAuthStateChanged(auth,(currentUser)=>{
+            setUser(currentUser)
         })
         return ()=>{
             unsubcribe()
         }
     },[])
     return(
-        <userAuthContext.Provider value={{user,signUp,logIn,logOut,googleSignIn}}>
+        <userAuthContext.Provider value={{user,logOut,googleSignIn}}>
             {children}
         </userAuthContext.Provider>
     )

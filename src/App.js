@@ -1,18 +1,27 @@
-import logo from './logo.svg';
-import {BrowserRouter, Routes,Route} from 'react-router-dom'
-import './App.css';
-import Login from './Components/Login/login';
-import Chatroom from './Components/ChatRoom/Chatroom';
-import { UserAuthContextProvider } from './Components/Login/UserAuthContext';
-function App() {
-  return (
-    <UserAuthContextProvider>
-      <Routes>
-        <Route path='/' element={<Login/>}/>
-        <Route path='/chatroom' element={<Chatroom/>}/>
-      </Routes>
-    </UserAuthContextProvider>
+import { Routes,Route} from 'react-router-dom'
+import styled from "styled-components";
+import Login from './Components/Login/Login';
+import Register from './Components/Login/Register';
+import  UserAuthContextProvider  from './Components/Login/UserAuthContext';
+import Contactlist from './Components/ChatRoom/Contactlist';
+import ChatRoom from './Components/ChatRoom/ChatRoom';
+import UpdateUser from './Components/Login/UpdateUser';
+
+export default function App() {
+  return(
+      <HomeField>
+        <Contactlist/>
+        <ChatRoom/>
+        {/* <Routes>
+          <Route path='chatroom:idRoom' element={<ChatRoom/>}/>
+        </Routes> */}
+      </HomeField>
   )  
 }
 
-export default App;
+const HomeField = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+`
+

@@ -1,0 +1,113 @@
+.mesent{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.message-img{
+    width: auto;
+    height: auto;
+    max-width: 25vw;
+    max-height: 20vh;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 0.5vh;
+}
+.mesent-content{
+    display: block;
+    background-color:rgb(24, 144, 255);
+    word-wrap: break-word;
+    max-width: fit-content;
+    padding:1vh 1vw;
+    border-radius: 3vh;
+    margin-bottom: 2vh;
+    color: white;
+    cursor: pointer;
+}
+.mesent-content p{
+    margin: 0;
+    max-width: 12vw;
+    width: auto;
+}
+.othersent{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.mesent-field{
+    display: flex;
+    width: 12vw;
+    justify-content: flex-end;
+}
+.othersent-content{
+    display:block;
+    float:left;
+    max-width:fit-content;
+    background-color:#ccc;
+    color:black;
+    word-wrap: break-word;
+    padding:1vh 1vw;
+    border-radius: 3vh;
+    margin-bottom: 2vh;
+    color: white;
+    max-width: fit-content;
+    
+    cursor: pointer;
+}
+.othersent-field{
+    display: flex;
+    justify-content: flex-start;
+    width: 12vw;
+}
+.othersent-content p{
+    margin: 0;
+    max-width: 12vw;
+}
+@media (max-width:1023px) and (min-width:768px){
+    .mesent-field{
+        width:25vw;
+    }
+    .mesent-content p{
+        max-width:25vw;
+    }
+    .message-img{
+        width: auto;
+        height: auto;
+        max-width: 35vw;
+        max-height: 30vh;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-bottom: 0.5vh;
+    }
+    .othersent-field{
+        width:25vw;
+    }
+    .othersent-content p{
+        max-width:25vw;
+    }
+}
+@media (max-width:767px){
+    .mesent-field{
+        width:40vw;
+    }
+    .othersent-content p{
+        max-width:40vw;
+        padding: 0 2vw;
+    }
+    .othersent-field{
+        width:40vw;
+    }
+    .mesent-content p{
+        max-width:40vw;
+        padding: 0 2vw;
+    }
+
+    .message-img{
+        width: auto;
+        height: auto;
+        max-width: 45vw;
+        max-height: 20vh;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-bottom: 0.5vh;
+    }
+}
